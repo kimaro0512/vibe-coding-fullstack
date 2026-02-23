@@ -1,5 +1,6 @@
 package com.example.vibeapp.controller;
 
+import com.example.vibeapp.domain.Post;
 import com.example.vibeapp.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
