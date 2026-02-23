@@ -38,3 +38,4 @@ This document outlines the technical specifications and structure for the **Vibe
 - **Bootstrap 5 UI:** Modern UI components using Bootstrap CDN.
 - **Post List:** In-memory post management with example data and list view.
 - **Git Convention:** Conventional Commits following `git-message-format.md`.
+- **Sort Order:** Posts are displayed in reverse order of their ID (latest first).

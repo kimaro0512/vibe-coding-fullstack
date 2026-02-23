@@ -14,7 +14,9 @@ public class PostRepository {
     private final AtomicLong nextId = new AtomicLong(1);
 
     public List<Post> findAll() {
-        return new ArrayList<>(posts);
+        return posts.stream()
+                .sorted((p1, p2) -> p2.getNo().compareTo(p1.getNo()))
+                .toList();
     }
 
     public Post save(Post post) {
