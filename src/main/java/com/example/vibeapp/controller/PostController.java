@@ -25,4 +25,9 @@ public class PostController {
         model.addAttribute("post", postService.getPost(no));
         return "post_detail";
     }
+
+    @GetMapping("/posts/new")
+    public String createForm() {
+        return "post_new_form";
+    }
 }
