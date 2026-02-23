@@ -38,4 +38,11 @@ public class PostService {
         return postRepository.findById(no)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post number: " + no));
     }
+
+    public void addPost(Post post) {
+        post.setCreatedAt(LocalDateTime.now());
+        post.setUpdatedAt(null);
+        post.setViews(0);
+        postRepository.save(post);
+    }
 }
