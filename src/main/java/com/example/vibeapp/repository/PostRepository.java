@@ -30,4 +30,8 @@ public class PostRepository {
     public Optional<Post> findById(Long no) {
         return posts.stream().filter(p -> p.getNo().equals(no)).findFirst();
     }
+
+    public void incrementViews(Long no) {
+        findById(no).ifPresent(post -> post.setViews(post.getViews() + 1));
+    }
 }

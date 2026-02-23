@@ -104,7 +104,8 @@
                             <tr th:each="post : ${posts}">
                                 <td th:text="${post.no}" class="text-secondary small">1</td>
                                 <td>
-                                    <a href="#" class="post-title" th:text="${post.title}">테스트 게시글 제목입니다</a>
+                                    <a th:href="@{/posts/{no}(no=${post.no})}" class="post-title"
+                                        th:text="${post.title}">테스트 게시글 제목입니다</a>
                                 </td>
                                 <td class="text-secondary small"
                                     th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2024-02-23</td>
