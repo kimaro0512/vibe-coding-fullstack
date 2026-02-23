@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vibe Coding | 코딩에 감각을 더하다</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }</script>
+    <style>
+        .grid-pattern {
+            background-image: radial-gradient(circle, #2547f422 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .code-glow {
+            text-shadow: 0 0 15px rgba(37, 71, 244, 0.4);
+        }
+
+        .bento-card {
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover {
+            border-color: #2547f4;
+            box-shadow: 0 0 20px rgba(37, 71, 244, 0.15);
+        }
+    </style>
+</head>
+
+<body class="bg-white font-sans text-black antialiased">
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a class="text-xl font-bold tracking-tight" href="#">Vibe Coding</a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a class="text-sm font-semibold hover:text-primary" href="#">Features</a>
+                    <a class="text-sm font-semibold hover:text-primary" href="#">Curriculum</a>
+                    <a class="text-sm font-semibold hover:text-primary" href="#">Mentors</a>
+                    <a class="text-sm font-semibold hover:text-primary" href="#">Community</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <span class="material-symbols-outlined text-xl cursor-pointer">search</span>
+                <span class="material-symbols-outlined text-xl cursor-pointer">person</span>
+                <button
+                    class="bg-black text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-800 transition-colors">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-32 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-black mb-6">
+                코딩에 감각을 더하다, <span class="text-primary">바이브코딩</span>
+            </h1>
+            <p class="text-lg text-gray-500 max-w-2xl mb-10">
+                단순한 문법 암기가 아닙니다. 혁신적인 커리큘럼으로 <br class="hidden sm:block" />당신의 커리어에 새로운 리듬과 감각을 부여하세요.
+            </p>
+            <div class="flex gap-4 mb-16">
+                <button
+                    class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-blue-600 transition-all">신청하기</button>
+                <button
+                    class="border border-gray-300 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-all">더
+                    알아보기</button>
+            </div>
+            <div class="w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+                <img alt="Vibe Coding Platform" class="w-full h-auto object-cover" src="{{DATA:IMAGE:IMAGE_4}}" />
+            </div>
+        </div>
+    </section>
+    <!-- Social Proof -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-12 md:gap-24 opacity-40">
+                <span class="text-xl font-bold tracking-tighter">TECHLEAP</span>
+                <span class="text-xl font-bold tracking-widest">NEXTCORE</span>
+                <span class="text-xl font-bold underline decoration-primary">BYTEFLOW</span>
+                <span class="text-xl font-bold uppercase">Zenith.dev</span>
+                <span class="text-xl font-black lowercase">vortex_ai</span>
+            </div>
+        </div>
+    </section>
+    <!-- Features Bento Grid -->
+    <section class="py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-20">
+            <h2 class="text-3xl font-bold mb-4">Why Vibe Coding?</h2>
+            <p class="text-gray-500">실전에 바로 뛰어들 수 있는 최적의 환경을 제공합니다.</p>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined">terminal</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Project Learning</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">실제 현업과 동일한 개발 환경에서 서비스를 직접 기획하고 구축합니다.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-xl flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined">group</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4">1:1 Mentoring</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">시니어 개발자들이 당신의 코드를 1:1로 리뷰하며 감각을 깨워줍니다.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined">layers</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Tech Stack</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">업계 표준을 넘어 최첨단 기술 스택을 마스터합니다.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
+                <div class="w-12 h-12 bg-green-50 text-green-500 rounded-xl flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined">verified</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Career Ready</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">단순 취업이 아닌 혁신가로서의 성장을 보장합니다.</p>
+            </div>
+        </div>
+    </section>
+    <!-- About Section: The Vibe -->
+    <section class="py-40 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div class="rounded-3xl overflow-hidden shadow-xl">
+                <img alt="Logic meets Intuition" class="w-full h-full object-cover" src="{{DATA:IMAGE:IMAGE_4}}" />
+            </div>
+            <div>
+                <h2 class="text-primary font-bold text-sm tracking-widest uppercase mb-4">The Essence</h2>
+                <h3 class="text-4xl md:text-5xl font-black mb-8 leading-tight tracking-tight text-black">
+                    Logic meets <br /> Intuition.
+                </h3>
+                <div class="space-y-8 text-lg text-gray-600 leading-relaxed">
+                    <p>프로그래밍은 단지 기계적인 명령어의 나열이 아닙니다. 좋은 개발자는 논리적인 구조와 창의적인 직관 사이에서 완벽한 균형을 잡아야 합니다.</p>
+                    <div class="pt-8 grid grid-cols-2 gap-12 border-t border-gray-100">
+                        <div>
+                            <p class="text-4xl font-black text-black mb-1">94.8%</p>
+                            <p class="text-sm font-medium text-gray-400">Employment Rate</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-black text-black mb-1">120%</p>
+                            <p class="text-sm font-medium text-gray-400">Avg. Salary Increase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl font-bold text-center mb-20">Stories from our Students</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-10 rounded-2xl bg-white border border-gray-100">
+                    <p class="text-gray-600 italic mb-8">"다른 부트캠프와 달리 코드의 질에 집중하는 모습이 좋았습니다. 실무에서 바로 인정받고 있습니다."</p>
+                    <p class="font-bold">김지민</p>
+                    <p class="text-xs text-gray-400">Frontend Dev @ Toss</p>
+                </div>
+                <div class="p-10 rounded-2xl bg-white border border-gray-100">
+                    <p class="text-gray-600 italic mb-8">"비전공자임에도 1:1 멘토링 덕분에 기술적인 기초를 완벽하게 익힐 수 있었습니다."</p>
+                    <p class="font-bold">이서준</p>
+                    <p class="text-xs text-gray-400">Fullstack Dev @ Karrot</p>
+                </div>
+                <div class="p-10 rounded-2xl bg-white border border-gray-100">
+                    <p class="text-gray-600 italic mb-8">"유저 피드백을 직접 받아보며 프로젝트를 고도화하는 경험이 정말 소중했습니다."</p>
+                    <p class="font-bold">박민서</p>
+                    <p class="text-xs text-gray-400">Product Engineer @ Line</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Final CTA -->
+    <section class="py-40 bg-white border-y border-gray-100">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black mb-8">당신의 코딩 감각을 <br /> 깨울 시간입니다.</h2>
+            <p class="text-gray-500 text-lg mb-12">지금 바로 합류하여 혁신적인 개발자로서의 첫 걸음을 내딛으세요.</p>
+            <button
+                class="bg-black text-white px-12 py-4 rounded-full text-lg font-bold hover:bg-gray-800 transition-all">지금
+                무료로 시작하기</button>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-20">
+                <div class="col-span-2 lg:col-span-2">
+                    <h2 class="text-xl font-bold mb-6">Vibe Coding</h2>
+                    <p class="text-sm text-gray-500 max-w-xs leading-relaxed">혁신적인 기술 교육을 통해 미래의 엔지니어를 양성합니다.</p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold mb-6 uppercase tracking-wider">Program</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a class="hover:underline" href="#">Frontend Track</a></li>
+                        <li><a class="hover:underline" href="#">Backend Track</a></li>
+                        <li><a class="hover:underline" href="#">Fullstack Intensive</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold mb-6 uppercase tracking-wider">Company</h4>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a class="hover:underline" href="#">About Us</a></li>
+                        <li><a class="hover:underline" href="#">Mentors</a></li>
+                        <li><a class="hover:underline" href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2">
+                    <h4 class="text-sm font-bold mb-6 uppercase tracking-wider">Newsletter</h4>
+                    <div class="flex border-b border-black pb-2">
+                        <input class="bg-transparent border-none focus:ring-0 text-sm flex-1"
+                            placeholder="Email Address" type="email" />
+                        <button class="material-symbols-outlined text-black">arrow_forward</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-gray-100">
+                <p class="text-[10px] text-gray-400">© 2024 Vibe Coding Inc. All rights reserved.</p>
+                <div class="flex gap-8 text-[10px] text-gray-400 font-bold">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
