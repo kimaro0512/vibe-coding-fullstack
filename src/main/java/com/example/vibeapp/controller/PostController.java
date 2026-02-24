@@ -44,4 +44,10 @@ public class PostController {
         postService.addPost(post);
         return "redirect:/posts";
     }
+
+    @PostMapping("/posts/{no}/save")
+    public String update(@PathVariable("no") Long no, String title, String content) {
+        postService.updatePost(no, title, content);
+        return "redirect:/posts/" + no;
+    }
 }

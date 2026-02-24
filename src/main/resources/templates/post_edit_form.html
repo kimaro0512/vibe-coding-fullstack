@@ -113,7 +113,7 @@
                 <p class="text-secondary small mt-2 mb-0">게시글의 내용을 수정할 수 있습니다.</p>
             </div>
             <div class="form-body">
-                <form id="editForm">
+                <form th:action="@{/posts/{no}/save(no=${post.no})}" method="post">
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <label class="form-label">번호</label>
@@ -153,8 +153,7 @@
 
                     <div class="d-flex gap-2 justify-content-end mt-5">
                         <a th:href="@{/posts/{no}(no=${post.no})}" class="btn btn-cancel rounded-pill px-4 py-2">취소</a>
-                        <button type="button" class="btn btn-save btn-primary rounded-pill px-5 py-2"
-                            onclick="alert('저장되었습니다.')">저장</button>
+                        <button type="submit" class="btn btn-save btn-primary rounded-pill px-5 py-2">저장</button>
                     </div>
                 </form>
             </div>
