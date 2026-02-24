@@ -13,34 +13,26 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
-    private final PostMapper postMapper;
+    private final PostRepository postRepository;
 
-    public PostService(PostMapper postMapper) {
-        this.postMapper = postMapper;
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
     public List<PostListDto> getPosts(int page, int size) {
-        List<Post> allPosts = postMapper.findAll();
-        int totalCount = allPosts.size();
-        
-        int fromIndex = (page - 1) * size;
-        if (fromIndex >= totalCount) {
-            return List.of();
-        }
-        
-        int toIndex = Math.min(fromIndex + size, totalCount);
-        return allPosts.subList(fromIndex, toIndex).stream()
+        int offset = (page - 1) * size;
+        return postRepository.findAllPaged(offset, size).stream()
                 .map(PostListDto::from)
                 .collect(Collectors.toList());
     }
 
     public int getTotalPages(int size) {
-        int totalCount = postMapper.findAll().size();
+        int totalCount = postRepository.countAll();
         return (int) Math.ceil((double) totalCount / size);
     }
 
     public PostResponseDTO getPost(Long id) {
-        postMapper.incrementViews(id);
+        postRepository.incrementViews(id);
         return PostResponseDTO.from(findPostById(id));
     }
 
@@ -50,7 +42,7 @@ public class PostService {
     }
 
     private Post findPostById(Long id) {
-        return postMapper.findById(id)
+        return postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));
     }
 
@@ -59,7 +51,7 @@ public class PostService {
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(null);
         post.setViews(0);
-        postMapper.insert(post);
+        postRepository.insert(post);
     }
 
     public void updatePost(Long id, PostUpdateDto dto) {
@@ -67,10 +59,10 @@ public class PostService {
         post.setTitle(dto.title());
         post.setContent(dto.content());
         post.setUpdatedAt(LocalDateTime.now());
-        postMapper.update(post);
+        postRepository.update(post);
     }
 
     public void deletePost(Long id) {
-        postMapper.deleteById(id);
+        postRepository.deleteById(id);
     }
 }
