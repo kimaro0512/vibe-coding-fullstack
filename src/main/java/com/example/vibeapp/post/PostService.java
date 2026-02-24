@@ -36,6 +36,10 @@ public class PostService {
         return PostResponseDTO.from(findPostById(id));
     }
 
+    public PostResponseDTO getPostDetail(Long id) {
+        return PostResponseDTO.from(findPostById(id));
+    }
+
     public PostUpdateDto getPostForEdit(Long id) {
         Post post = findPostById(id);
         return new PostUpdateDto(post.getTitle(), post.getContent());
