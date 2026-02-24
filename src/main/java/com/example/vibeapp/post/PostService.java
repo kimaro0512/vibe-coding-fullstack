@@ -77,8 +77,8 @@ public class PostService {
 
     public void updatePost(Long id, PostUpdateDto dto) {
         Post post = findPostById(id);
-        post.setTitle(dto.getTitle());
-        post.setContent(dto.getContent());
+        post.setTitle(dto.title());
+        post.setContent(dto.content());
         post.setUpdatedAt(LocalDateTime.now());
     }
 
