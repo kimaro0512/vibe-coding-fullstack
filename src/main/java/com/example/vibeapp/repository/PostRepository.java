@@ -22,6 +22,9 @@ public class PostRepository {
     public Post save(Post post) {
         if (post.getNo() == null) {
             post.setNo(nextId.getAndIncrement());
+        } else {
+            // 수동으로 ID가 지정된 경우 nextId를 업데이트하여 중복 방지
+            nextId.set(Math.max(nextId.get(), post.getNo() + 1));
         }
         posts.add(post);
         return post;
