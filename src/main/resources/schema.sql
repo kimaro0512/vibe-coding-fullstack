@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS posts;
+
+CREATE TABLE posts (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content CLOB NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP,
+    views INT DEFAULT 0
+);
