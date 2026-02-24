@@ -132,7 +132,8 @@
                 <div class="d-flex gap-2">
                     <a th:href="@{/posts/{no}/edit(no=${post.no})}"
                         class="btn btn-outline-secondary rounded-pill px-4">수정</a>
-                    <button class="btn btn-outline-danger rounded-pill px-4">삭제</button>
+                    <a th:href="@{/posts/{no}/delete(no=${post.no})}" class="btn btn-outline-danger rounded-pill px-4"
+                        onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
                 </div>
             </div>
         </div>

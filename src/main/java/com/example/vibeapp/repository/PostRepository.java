@@ -34,4 +34,8 @@ public class PostRepository {
     public void incrementViews(Long no) {
         findById(no).ifPresent(post -> post.setViews(post.getViews() + 1));
     }
+
+    public void deleteById(Long no) {
+        posts.removeIf(post -> post.getNo().equals(no));
+    }
 }
