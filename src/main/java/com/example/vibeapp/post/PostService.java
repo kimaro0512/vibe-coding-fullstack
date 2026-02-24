@@ -44,35 +44,35 @@ public class PostService {
         return (int) Math.ceil((double) totalCount / size);
     }
 
-    public Post getPost(Long no) {
-        postRepository.incrementViews(no);
-        return findPostById(no);
+    public Post getPost(Long id) {
+        postRepository.incrementViews(id);
+        return findPostById(id);
     }
 
-    public Post getPostForEdit(Long no) {
-        return findPostById(no);
+    public Post getPostForEdit(Long id) {
+        return findPostById(id);
     }
 
-    private Post findPostById(Long no) {
-        return postRepository.findById(no)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid post number: " + no));
+    private Post findPostById(Long id) {
+        return postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid post id: " + id));
     }
 
-    public void addPost(Post post) {
+    public void createPost(Post post) {
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(null);
         post.setViews(0);
         postRepository.save(post);
     }
 
-    public void updatePost(Long no, String title, String content) {
-        Post post = findPostById(no);
+    public void updatePost(Long id, String title, String content) {
+        Post post = findPostById(id);
         post.setTitle(title);
         post.setContent(content);
         post.setUpdatedAt(LocalDateTime.now());
     }
 
-    public void deletePost(Long no) {
-        postRepository.deleteById(no);
+    public void deletePost(Long id) {
+        postRepository.deleteById(id);
     }
 }

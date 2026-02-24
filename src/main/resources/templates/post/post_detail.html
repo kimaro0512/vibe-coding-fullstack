@@ -104,7 +104,7 @@
     <div class="container container-main">
         <div class="card">
             <div class="detail-header">
-                <span class="post-no" th:text="'#' + ${post.no}">#1</span>
+                <span class="post-no" th:text="'#' + ${post.id}">#1</span>
                 <h1 class="fw-bold mb-3" th:text="${post.title}">게시글 제목입니다.</h1>
                 <div class="meta-info">
                     <div class="meta-item">
@@ -130,9 +130,9 @@
                     목록으로
                 </a>
                 <div class="d-flex gap-2">
-                    <a th:href="@{/posts/{no}/edit(no=${post.no})}"
+                    <a th:href="@{/posts/{id}/edit(id=${post.id})}"
                         class="btn btn-outline-secondary rounded-pill px-4">수정</a>
-                    <a th:href="@{/posts/{no}/delete(no=${post.no})}" class="btn btn-outline-danger rounded-pill px-4"
+                    <a th:href="@{/posts/{id}/delete(id=${post.id})}" class="btn btn-outline-danger rounded-pill px-4"
                         onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
                 </div>
             </div>
