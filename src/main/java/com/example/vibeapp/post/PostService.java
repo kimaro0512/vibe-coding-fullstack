@@ -36,11 +36,11 @@ public class PostService {
 
     public PostResponseDTO getPost(Long id) {
         postRepository.incrementViews(id);
-        return PostResponseDTO.from(findPostById(id));
+        return toPostResponseDto(findPostById(id));
     }
 
     public PostResponseDTO getPostDetail(Long id) {
-        return PostResponseDTO.from(findPostById(id));
+        return toPostResponseDto(findPostById(id));
     }
 
     public PostUpdateDto getPostForEdit(Long id) {
@@ -92,5 +92,12 @@ public class PostService {
                 .filter(tag -> !tag.isBlank())
                 .distinct()
                 .forEach(tag -> postTagRepository.insert(new PostTag(null, postId, tag)));
+    }
+
+    private PostResponseDTO toPostResponseDto(Post post) {
+        List<String> tags = postTagRepository.findByPostId(post.getId()).stream()
+                .map(PostTag::getTagName)
+                .toList();
+        return PostResponseDTO.from(post, tags);
     }
 }

@@ -68,6 +68,22 @@
             gap: 0.25rem;
         }
 
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag-badge {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+        }
+
         .post-no {
             color: #137fec;
             font-weight: 700;
@@ -119,6 +135,9 @@
                         <span class="material-symbols-outlined fs-6">visibility</span>
                         <span th:text="${post.views}">42</span>
                     </div>
+                </div>
+                <div class="tag-list" th:if="${post.tags != null and !#lists.isEmpty(post.tags)}">
+                    <span class="tag-badge" th:each="tag : ${post.tags}" th:text="'#' + ${tag}">#spring</span>
                 </div>
             </div>
             <div class="detail-body">
