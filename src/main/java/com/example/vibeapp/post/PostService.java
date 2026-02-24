@@ -34,15 +34,18 @@ public class PostService {
         return (int) Math.ceil((double) totalCount / size);
     }
 
+    @Transactional
     public PostResponseDTO getPost(Long id) {
         postRepository.incrementViews(id);
         return toPostResponseDto(findPostById(id));
     }
 
+    @Transactional(readOnly = true)
     public PostResponseDTO getPostDetail(Long id) {
         return toPostResponseDto(findPostById(id));
     }
 
+    @Transactional(readOnly = true)
     public PostUpdateDto getPostForEdit(Long id) {
         Post post = findPostById(id);
         String tags = postTagRepository.findByPostId(id).stream()
@@ -78,6 +81,7 @@ public class PostService {
         saveTags(id, dto.tags());
     }
 
+    @Transactional
     public void deletePost(Long id) {
         postRepository.deleteById(id);
     }
