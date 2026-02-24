@@ -35,6 +35,14 @@ public class PostService {
 
     public Post getPost(Long no) {
         postRepository.incrementViews(no);
+        return findPostById(no);
+    }
+
+    public Post getPostForEdit(Long no) {
+        return findPostById(no);
+    }
+
+    private Post findPostById(Long no) {
         return postRepository.findById(no)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid post number: " + no));
     }
