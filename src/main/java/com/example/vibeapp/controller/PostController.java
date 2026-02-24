@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
@@ -17,8 +18,11 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String list(Model model) {
-        model.addAttribute("posts", postService.getPosts());
+    public String list(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        int pageSize = 5;
+        model.addAttribute("posts", postService.getPosts(page, pageSize));
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", postService.getTotalPages(pageSize));
         return "posts";
     }
 

@@ -29,8 +29,22 @@ public class PostService {
         }
     }
 
-    public List<Post> getPosts() {
-        return postRepository.findAll();
+    public List<Post> getPosts(int page, int size) {
+        List<Post> allPosts = postRepository.findAll();
+        int totalCount = allPosts.size();
+        
+        int fromIndex = (page - 1) * size;
+        if (fromIndex >= totalCount) {
+            return List.of();
+        }
+        
+        int toIndex = Math.min(fromIndex + size, totalCount);
+        return allPosts.subList(fromIndex, toIndex);
+    }
+
+    public int getTotalPages(int size) {
+        int totalCount = postRepository.findAll().size();
+        return (int) Math.ceil((double) totalCount / size);
     }
 
     public Post getPost(Long no) {
