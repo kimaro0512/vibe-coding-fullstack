@@ -16,6 +16,7 @@ spring:
   sql:
     init:
       mode: always
+      data-locations: 
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
