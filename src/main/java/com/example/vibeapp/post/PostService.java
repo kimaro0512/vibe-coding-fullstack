@@ -35,25 +35,9 @@ public class PostService {
         return (int) Math.ceil((double) totalCount / size);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public PostResponseDTO getPost(Long id) {
-        Post post = findPostById(id);
-        post.setViews(post.getViews() + 1);
-        return toPostResponseDto(post);
-    }
-
-    @Transactional(readOnly = true)
-    public PostResponseDTO getPostDetail(Long id) {
         return toPostResponseDto(findPostById(id));
-    }
-
-    @Transactional(readOnly = true)
-    public PostUpdateDto getPostForEdit(Long id) {
-        Post post = findPostById(id);
-        String tags = postTagRepository.findByPostIdOrderByIdAsc(id).stream()
-                .map(PostTag::getTagName)
-                .collect(Collectors.joining(", "));
-        return new PostUpdateDto(post.getTitle(), post.getContent(), tags);
     }
 
     private Post findPostById(Long id) {
@@ -62,17 +46,18 @@ public class PostService {
     }
 
     @Transactional
-    public void createPost(PostCreateDto dto) {
+    public PostResponseDTO createPost(PostCreateDto dto) {
         Post post = dto.toEntity();
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(null);
         post.setViews(0);
         Post savedPost = postRepository.save(post);
         saveTags(savedPost.getId(), dto.tags());
+        return toPostResponseDto(savedPost);
     }
 
     @Transactional
-    public void updatePost(Long id, PostUpdateDto dto) {
+    public PostResponseDTO updatePost(Long id, PostUpdateDto dto) {
         Post post = findPostById(id);
         post.setTitle(dto.title());
         post.setContent(dto.content());
@@ -80,10 +65,14 @@ public class PostService {
 
         postTagRepository.deleteByPostId(id);
         saveTags(id, dto.tags());
+
+        return toPostResponseDto(post);
     }
 
     @Transactional
     public void deletePost(Long id) {
+        findPostById(id);
+        postTagRepository.deleteByPostId(id);
         postRepository.deleteById(id);
     }
 
