@@ -1,7 +1,13 @@
 package com.example.vibeapp.post;
+
+import com.example.vibeapp.post.dto.PostCreateDto;
+import com.example.vibeapp.post.dto.PostUpdateDto;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,25 +36,34 @@ public class PostController {
     }
 
     @GetMapping("/posts/new")
-    public String createForm() {
+    public String createForm(Model model) {
+        model.addAttribute("postCreateDto", new PostCreateDto());
         return "post/post_new_form";
     }
 
     @GetMapping("/posts/{id}/edit")
     public String editForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("post", postService.getPostForEdit(id));
+        model.addAttribute("postUpdateDto", postService.getPostForEdit(id));
+        model.addAttribute("id", id);
         return "post/post_edit_form";
     }
 
     @PostMapping("/posts/add")
-    public String create(Post post) {
-        postService.createPost(post);
+    public String create(@Valid @ModelAttribute("postCreateDto") PostCreateDto postCreateDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "post/post_new_form";
+        }
+        postService.createPost(postCreateDto);
         return "redirect:/posts";
     }
 
     @PostMapping("/posts/{id}/save")
-    public String update(@PathVariable("id") Long id, String title, String content) {
-        postService.updatePost(id, title, content);
+    public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("postUpdateDto") PostUpdateDto postUpdateDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("id", id);
+            return "post/post_edit_form";
+        }
+        postService.updatePost(id, postUpdateDto);
         return "redirect:/posts/" + id;
     }
 
