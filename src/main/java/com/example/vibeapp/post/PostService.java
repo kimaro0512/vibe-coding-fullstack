@@ -4,12 +4,13 @@ import com.example.vibeapp.post.dto.PostCreateDto;
 import com.example.vibeapp.post.dto.PostListDto;
 import com.example.vibeapp.post.dto.PostResponseDTO;
 import com.example.vibeapp.post.dto.PostUpdateDto;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,21 +24,22 @@ public class PostService {
     }
 
     public List<PostListDto> getPosts(int page, int size) {
-        int offset = (page - 1) * size;
-        return postRepository.findAllPaged(offset, size).stream()
+        PageRequest pageable = PageRequest.of(page - 1, size);
+        return postRepository.findByOrderByIdDesc(pageable).stream()
                 .map(PostListDto::from)
                 .collect(Collectors.toList());
     }
 
     public int getTotalPages(int size) {
-        int totalCount = postRepository.countAll();
+        long totalCount = postRepository.count();
         return (int) Math.ceil((double) totalCount / size);
     }
 
     @Transactional
     public PostResponseDTO getPost(Long id) {
-        postRepository.incrementViews(id);
-        return toPostResponseDto(findPostById(id));
+        Post post = findPostById(id);
+        post.setViews(post.getViews() + 1);
+        return toPostResponseDto(post);
     }
 
     @Transactional(readOnly = true)
@@ -48,7 +50,7 @@ public class PostService {
     @Transactional(readOnly = true)
     public PostUpdateDto getPostForEdit(Long id) {
         Post post = findPostById(id);
-        String tags = postTagRepository.findByPostId(id).stream()
+        String tags = postTagRepository.findByPostIdOrderByIdAsc(id).stream()
                 .map(PostTag::getTagName)
                 .collect(Collectors.joining(", "));
         return new PostUpdateDto(post.getTitle(), post.getContent(), tags);
@@ -65,8 +67,8 @@ public class PostService {
         post.setCreatedAt(LocalDateTime.now());
         post.setUpdatedAt(null);
         post.setViews(0);
-        postRepository.insert(post);
-        saveTags(post.getId(), dto.tags());
+        Post savedPost = postRepository.save(post);
+        saveTags(savedPost.getId(), dto.tags());
     }
 
     @Transactional
@@ -75,7 +77,6 @@ public class PostService {
         post.setTitle(dto.title());
         post.setContent(dto.content());
         post.setUpdatedAt(LocalDateTime.now());
-        postRepository.update(post);
 
         postTagRepository.deleteByPostId(id);
         saveTags(id, dto.tags());
@@ -95,11 +96,11 @@ public class PostService {
                 .map(String::trim)
                 .filter(tag -> !tag.isBlank())
                 .distinct()
-                .forEach(tag -> postTagRepository.insert(new PostTag(null, postId, tag)));
+                .forEach(tag -> postTagRepository.save(new PostTag(null, postId, tag)));
     }
 
     private PostResponseDTO toPostResponseDto(Post post) {
-        List<String> tags = postTagRepository.findByPostId(post.getId()).stream()
+        List<String> tags = postTagRepository.findByPostIdOrderByIdAsc(post.getId()).stream()
                 .map(PostTag::getTagName)
                 .toList();
         return PostResponseDTO.from(post, tags);
