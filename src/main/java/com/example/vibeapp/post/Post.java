@@ -1,4 +1,4 @@
-package com.example.vibeapp.domain;
+package com.example.vibeapp.post;
 
 import java.time.LocalDateTime;
 

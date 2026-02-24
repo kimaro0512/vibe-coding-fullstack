@@ -1,6 +1,4 @@
-package com.example.vibeapp.repository;
-
-import com.example.vibeapp.domain.Post;
+package com.example.vibeapp.post;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
