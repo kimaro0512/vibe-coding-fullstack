@@ -61,6 +61,7 @@ public class PostController {
     @PostMapping("/posts/{id}/save")
     public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("postUpdateDto") PostUpdateDto postUpdateDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("post", postService.getPostDetail(id));
             model.addAttribute("id", id);
             return "post/post_edit_form";
         }

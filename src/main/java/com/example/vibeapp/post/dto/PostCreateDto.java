@@ -10,10 +10,12 @@ public record PostCreateDto(
     String title,
 
     @NotBlank(message = "내용은 필수입니다.")
-    String content
+    String content,
+
+    String tags
 ) {
     public PostCreateDto() {
-        this("", "");
+        this("", "", "");
     }
 
     public Post toEntity() {

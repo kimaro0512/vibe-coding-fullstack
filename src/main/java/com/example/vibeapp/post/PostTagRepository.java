@@ -1,6 +1,7 @@
 package com.example.vibeapp.post;
 
 import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 
 @Mapper
 public interface PostTagRepository {
@@ -18,4 +19,8 @@ public interface PostTagRepository {
      * @param id 삭제할 태그의 ID
      */
     void deleteById(Long id);
+
+    List<PostTag> findByPostId(Long postId);
+
+    void deleteByPostId(Long postId);
 }

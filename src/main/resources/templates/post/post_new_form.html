@@ -126,6 +126,12 @@
                             내용 에러 메시지
                         </div>
                     </div>
+                    <div class="mb-4">
+                        <label for="tags" class="form-label">태그</label>
+                        <input type="text" th:field="*{tags}" class="form-control" id="tags"
+                            placeholder="예: java, spring, mybatis">
+                        <div class="form-text">쉼표(,)로 구분해 여러 태그를 입력하세요.</div>
+                    </div>
                     <div class="d-flex gap-2 justify-content-end mt-5">
                         <a href="/posts" class="btn btn-cancel rounded-pill px-4 py-2">취소</a>
                         <button type="submit" class="btn btn-submit btn-primary rounded-pill px-5 py-2">등록</button>
