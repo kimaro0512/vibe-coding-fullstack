@@ -15,7 +15,7 @@ spring:
         web-allow-others: false
   sql:
     init:
-      mode: always
+      mode: never
       data-locations: 
 
 mybatis:
